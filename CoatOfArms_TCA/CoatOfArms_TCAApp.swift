@@ -5,13 +5,25 @@
 //  Created on 30/9/24.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 @main
 struct CoatOfArms_TCAApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ChoiceButtonView(
+                store: Store(
+                    initialState: ChoiceButtonFeature.State(),
+                    reducer: {
+                        ChoiceButtonFeature()
+                    },
+                    withDependencies: { dependencies in
+                        //
+                    }
+                )
+            )
+            .padding()
         }
     }
 }

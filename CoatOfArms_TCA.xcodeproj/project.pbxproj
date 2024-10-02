@@ -6,15 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		814DF04A2CAAD78B00192D55 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 814DF0492CAAD78B00192D55 /* ComposableArchitecture */; };
+		814DF04D2CAADD6700192D55 /* ReactiveStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 814DF04C2CAADD6700192D55 /* ReactiveStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		814DF02C2CAAD69C00192D55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 814DF0132CAAD69B00192D55 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 814DF01A2CAAD69B00192D55;
-			remoteInfo = CoatOfArms_TCA;
-		};
-		814DF0362CAAD69C00192D55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 814DF0132CAAD69B00192D55 /* Project object */;
 			proxyType = 1;
@@ -26,7 +24,6 @@
 /* Begin PBXFileReference section */
 		814DF01B2CAAD69B00192D55 /* CoatOfArms_TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoatOfArms_TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoatOfArms_TCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		814DF0352CAAD69C00192D55 /* CoatOfArms_TCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoatOfArms_TCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,17 +49,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814DF04A2CAAD78B00192D55 /* ComposableArchitecture in Frameworks */,
+				814DF04D2CAADD6700192D55 /* ReactiveStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		814DF0282CAAD69C00192D55 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		814DF0322CAAD69C00192D55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,7 +79,6 @@
 			children = (
 				814DF01B2CAAD69B00192D55 /* CoatOfArms_TCA.app */,
 				814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */,
-				814DF0352CAAD69C00192D55 /* CoatOfArms_TCAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +103,8 @@
 			);
 			name = CoatOfArms_TCA;
 			packageProductDependencies = (
+				814DF0492CAAD78B00192D55 /* ComposableArchitecture */,
+				814DF04C2CAADD6700192D55 /* ReactiveStorage */,
 			);
 			productName = CoatOfArms_TCA;
 			productReference = 814DF01B2CAAD69B00192D55 /* CoatOfArms_TCA.app */;
@@ -140,29 +133,6 @@
 			productReference = 814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		814DF0342CAAD69C00192D55 /* CoatOfArms_TCAUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 814DF0452CAAD69C00192D55 /* Build configuration list for PBXNativeTarget "CoatOfArms_TCAUITests" */;
-			buildPhases = (
-				814DF0312CAAD69C00192D55 /* Sources */,
-				814DF0322CAAD69C00192D55 /* Frameworks */,
-				814DF0332CAAD69C00192D55 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				814DF0372CAAD69C00192D55 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				814DF0382CAAD69C00192D55 /* CoatOfArms_TCAUITests */,
-			);
-			name = CoatOfArms_TCAUITests;
-			packageProductDependencies = (
-			);
-			productName = CoatOfArms_TCAUITests;
-			productReference = 814DF0352CAAD69C00192D55 /* CoatOfArms_TCAUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -180,10 +150,6 @@
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 814DF01A2CAAD69B00192D55;
 					};
-					814DF0342CAAD69C00192D55 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 814DF01A2CAAD69B00192D55;
-					};
 				};
 			};
 			buildConfigurationList = 814DF0162CAAD69B00192D55 /* Build configuration list for PBXProject "CoatOfArms_TCA" */;
@@ -195,6 +161,10 @@
 			);
 			mainGroup = 814DF0122CAAD69B00192D55;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				814DF0482CAAD78A00192D55 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				814DF04B2CAADD6700192D55 /* XCRemoteSwiftPackageReference "ReactiveStorage" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 814DF01C2CAAD69B00192D55 /* Products */;
 			projectDirPath = "";
@@ -202,7 +172,6 @@
 			targets = (
 				814DF01A2CAAD69B00192D55 /* CoatOfArms_TCA */,
 				814DF02A2CAAD69C00192D55 /* CoatOfArms_TCATests */,
-				814DF0342CAAD69C00192D55 /* CoatOfArms_TCAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +185,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		814DF0292CAAD69C00192D55 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		814DF0332CAAD69C00192D55 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +208,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		814DF0312CAAD69C00192D55 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +215,6 @@
 			isa = PBXTargetDependency;
 			target = 814DF01A2CAAD69B00192D55 /* CoatOfArms_TCA */;
 			targetProxy = 814DF02C2CAAD69C00192D55 /* PBXContainerItemProxy */;
-		};
-		814DF0372CAAD69C00192D55 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 814DF01A2CAAD69B00192D55 /* CoatOfArms_TCA */;
-			targetProxy = 814DF0362CAAD69C00192D55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -403,6 +353,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,6 +382,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "es.juanjo.CoatOfArms-TCATests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,7 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "es.juanjo.CoatOfArms-TCATests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,38 +429,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoatOfArms_TCA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoatOfArms_TCA";
-			};
-			name = Release;
-		};
-		814DF0462CAAD69C00192D55 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "es.juanjo.CoatOfArms-TCAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CoatOfArms_TCA;
-			};
-			name = Debug;
-		};
-		814DF0472CAAD69C00192D55 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "es.juanjo.CoatOfArms-TCAUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CoatOfArms_TCA;
 			};
 			name = Release;
 		};
@@ -542,16 +462,39 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		814DF0452CAAD69C00192D55 /* Build configuration list for PBXNativeTarget "CoatOfArms_TCAUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				814DF0462CAAD69C00192D55 /* Debug */,
-				814DF0472CAAD69C00192D55 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		814DF0482CAAD78A00192D55 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.15.0;
+			};
+		};
+		814DF04B2CAADD6700192D55 /* XCRemoteSwiftPackageReference "ReactiveStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juanjo72/ReactiveStorage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		814DF0492CAAD78B00192D55 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 814DF0482CAAD78A00192D55 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		814DF04C2CAADD6700192D55 /* ReactiveStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 814DF04B2CAADD6700192D55 /* XCRemoteSwiftPackageReference "ReactiveStorage" */;
+			productName = ReactiveStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 814DF0132CAAD69B00192D55 /* Project object */;
 }
