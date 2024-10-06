@@ -12,18 +12,32 @@ import SwiftUI
 struct CoatOfArms_TCAApp: App {
     var body: some Scene {
         WindowGroup {
-            ChoiceButtonView(
+            QuestionView(
                 store: Store(
-                    initialState: ChoiceButtonFeature.State(),
+                    initialState: QuestionFeature.State(
+                        id: Question.ID(
+                            gameStamp: Date(timeIntervalSince1970: 0),
+                            countryCode: "ES"
+                        )
+                    ),
                     reducer: {
-                        ChoiceButtonFeature()
-                    },
-                    withDependencies: { dependencies in
-                        //
+                        QuestionFeature()
                     }
                 )
             )
             .padding()
+            
+            RemainingLivesView(
+                store: Store(
+                    initialState: RemainingLivesFeature.State(
+                        id: Question.ID(
+                            gameStamp: Date(timeIntervalSince1970: 0),
+                            countryCode: "ES"
+                        )
+                    ),
+                    reducer: { RemainingLivesFeature() }
+                )
+            )
         }
     }
 }

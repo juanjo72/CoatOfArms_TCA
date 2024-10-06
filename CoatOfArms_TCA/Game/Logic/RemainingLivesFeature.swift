@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct RemainingLivesFeature {
     @ObservableState
     struct State: Equatable {
+        let id: Question.ID
         var remainingLives: Int = 0
         var totalLives: Int = 0
     }
@@ -21,15 +22,18 @@ struct RemainingLivesFeature {
     }
     
     @Dependency(\.gameSettings) var gameSetting
-    @Dependency(\.remainingLivesRepository) var repository
+    @Dependency(\.sourceOfTruth) var sourceOfTruth
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .viewWillAppear:
                 state.totalLives = gameSetting.maxWrongAnswers
+                let questionId = state.id
                 return .publisher {
-                    repository.wrongAnswers
+                    self.sourceOfTruth.getAllElementsObservable(of: UserChoice.self)
+                        .map { $0.filter { $0.id.gameStamp == questionId.gameStamp } }
+                        .map { $0.filter { !$0.isCorrect } }
                         .map(\.count)
                         .map { Action.update(numberOfLives: gameSetting.maxWrongAnswers - $0) }
                 }

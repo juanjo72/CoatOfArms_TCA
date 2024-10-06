@@ -35,14 +35,15 @@ struct ChoiceButtonView: View {
 #Preview {
     ChoiceButtonView(
         store: Store(
-            initialState: ChoiceButtonFeature.State(),
+            initialState: ChoiceButtonFeature.State(
+                id: "ES",
+                questionId: Question.ID(
+                    gameStamp: .now,
+                    countryCode: "ES"
+                )
+            ),
             reducer: {
                 ChoiceButtonFeature()
-            },
-            withDependencies: { dependencies in
-                dependencies.game = .now
-                dependencies.buttonCountry = "ES"
-                dependencies.questionCountry = "IT"
             }
         )
     )

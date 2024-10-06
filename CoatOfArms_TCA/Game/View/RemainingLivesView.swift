@@ -36,14 +36,15 @@ struct RemainingLivesView: View {
     RemainingLivesView(
         store: Store(
             initialState: RemainingLivesFeature.State(
+                id: Question.ID(
+                    gameStamp: .now,
+                    countryCode: "ES"
+                ),
                 remainingLives: 3,
                 totalLives: 3
             ),
             reducer: {
                 RemainingLivesFeature()
-            },
-            withDependencies: { dependencies in
-                dependencies.game = .now
             }
         )
     )

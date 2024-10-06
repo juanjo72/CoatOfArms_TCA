@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		814DF04A2CAAD78B00192D55 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 814DF0492CAAD78B00192D55 /* ComposableArchitecture */; };
 		814DF04D2CAADD6700192D55 /* ReactiveStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 814DF04C2CAADD6700192D55 /* ReactiveStorage */; };
+		8153F0C32CAE4C4200B968B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8153F0C22CAE4C4200B968B0 /* Kingfisher */; };
+		8153F0DE2CAE54D000B968B0 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 8153F0DD2CAE54D000B968B0 /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +39,6 @@
 			path = CoatOfArms_TCATests;
 			sourceTree = "<group>";
 		};
-		814DF0382CAAD69C00192D55 /* CoatOfArms_TCAUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CoatOfArms_TCAUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8153F0C32CAE4C4200B968B0 /* Kingfisher in Frameworks */,
+				8153F0DE2CAE54D000B968B0 /* Network in Frameworks */,
 				814DF04A2CAAD78B00192D55 /* ComposableArchitecture in Frameworks */,
 				814DF04D2CAADD6700192D55 /* ReactiveStorage in Frameworks */,
 			);
@@ -69,7 +68,6 @@
 			children = (
 				814DF01D2CAAD69B00192D55 /* CoatOfArms_TCA */,
 				814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */,
-				814DF0382CAAD69C00192D55 /* CoatOfArms_TCAUITests */,
 				814DF01C2CAAD69B00192D55 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,6 +103,8 @@
 			packageProductDependencies = (
 				814DF0492CAAD78B00192D55 /* ComposableArchitecture */,
 				814DF04C2CAADD6700192D55 /* ReactiveStorage */,
+				8153F0C22CAE4C4200B968B0 /* Kingfisher */,
+				8153F0DD2CAE54D000B968B0 /* Network */,
 			);
 			productName = CoatOfArms_TCA;
 			productReference = 814DF01B2CAAD69B00192D55 /* CoatOfArms_TCA.app */;
@@ -164,6 +164,8 @@
 			packageReferences = (
 				814DF0482CAAD78A00192D55 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				814DF04B2CAADD6700192D55 /* XCRemoteSwiftPackageReference "ReactiveStorage" */,
+				8153F0C12CAE4C4200B968B0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8153F0DC2CAE54D000B968B0 /* XCRemoteSwiftPackageReference "Network" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 814DF01C2CAAD69B00192D55 /* Products */;
@@ -481,6 +483,22 @@
 				kind = branch;
 			};
 		};
+		8153F0C12CAE4C4200B968B0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.3;
+			};
+		};
+		8153F0DC2CAE54D000B968B0 /* XCRemoteSwiftPackageReference "Network" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/juanjo72/Network.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -493,6 +511,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 814DF04B2CAADD6700192D55 /* XCRemoteSwiftPackageReference "ReactiveStorage" */;
 			productName = ReactiveStorage;
+		};
+		8153F0C22CAE4C4200B968B0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8153F0C12CAE4C4200B968B0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		8153F0DD2CAE54D000B968B0 /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8153F0DC2CAE54D000B968B0 /* XCRemoteSwiftPackageReference "Network" */;
+			productName = Network;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,5 +1,5 @@
 {
-  "originHash" : "78b75a6e41a896da4cc7c8f2657a5aa263d1e3736f69e4057e4b34cb676fb80c",
+  "originHash" : "8e14164587807cb4a280c3142d7e7489f752b53856e2ee2139b2ba1d45b09e05",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -8,6 +8,24 @@
       "state" : {
         "revision" : "9fa31f4403da54855f1e2aeaeff478f4f0e40b13",
         "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "33696a71dd4d71f1b0f781ade11a48ba5549581a",
+        "version" : "8.0.3"
+      }
+    },
+    {
+      "identity" : "network",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/juanjo72/Network.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6dc949da8d5626c6f52ffe39e56d4ceb7f7b908a"
       }
     },
     {
