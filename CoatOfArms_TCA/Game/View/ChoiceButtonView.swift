@@ -14,20 +14,20 @@ struct ChoiceButtonView: View {
     var body: some View {
         Button(
             action: {
-                self.store.send(.userDidTap)
+                store.send(.userDidTap)
             },
             label: {
-                Text(self.store.label)
+                Text(store.label)
                     .font(.title2)
                     .lineLimit(nil)
                     .frame(maxWidth: .infinity)
             }
         )
         .buttonStyle(.borderedProminent)
-        .tint(self.store.tint)
+        .tint(store.tint)
         .clipShape(Capsule())
         .onAppear() {
-            self.store.send(.viewWillAppear)
+            store.send(.viewWillAppear)
         }
     }
 }

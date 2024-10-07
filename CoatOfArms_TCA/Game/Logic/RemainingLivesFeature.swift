@@ -15,15 +15,15 @@ struct RemainingLivesFeature {
         var remainingLives: Int = 0
         var totalLives: Int = 0
     }
-    
+
     enum Action: Equatable {
         case viewWillAppear
         case update(numberOfLives: Int)
     }
-    
+
     @Dependency(\.gameSettings) var gameSetting
     @Dependency(\.sourceOfTruth) var sourceOfTruth
-    
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {

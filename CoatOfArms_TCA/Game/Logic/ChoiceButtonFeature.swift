@@ -19,7 +19,7 @@ struct ChoiceButtonFeature {
         var label: String = ""
         var tint: Color = .accentColor
     }
-    
+
     enum Action: Equatable {
         case viewWillAppear
         case userDidTap
@@ -31,7 +31,7 @@ struct ChoiceButtonFeature {
     @Dependency(\.getCountryName) var getCountryName
     @Dependency(\.playSound) var playSound
     @Dependency(\.sourceOfTruth) var sourceOfTruth
-    
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -69,7 +69,7 @@ struct ChoiceButtonFeature {
                     try? await Task.sleep(for: gameSetting.resultTime)
                     await send(.done)
                 }
-                
+
             case .updateCurrentChoice(let choice):
                 guard let choice else {
                     state.tint = .accentColor
@@ -77,7 +77,7 @@ struct ChoiceButtonFeature {
                 }
                 state.tint = choice.isCorrect ? .green : .red
                 return .none
-                
+
             case .done:
                 return .none
             }
