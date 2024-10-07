@@ -21,6 +21,7 @@ struct QuestionFeature {
         case viewWillAppear
         case update(question: Question?)
         case buttons(IdentifiedActionOf<ChoiceButtonFeature>)
+        case emtpyCoatOfArmsError
     }
     
     @Dependency(\.sourceOfTruth) var sourceOfTruth
@@ -41,23 +42,28 @@ struct QuestionFeature {
                     .map(Action.update)
                 }
                 .merge(
-                    with: .run { _ in
-                        let url = URL(string: "https://restcountries.com/v3.1/alpha/\(questionId.countryCode)")!
-                        let response: ServerResponse = try await network.request(url: url)
-                        let serverCountry = response.country
-                        let otherChoices = self.randomCountryGenerator.generateCodes(
-                            n: self.gameSettings.numPossibleChoices - 1,
-                            excluding: [questionId.countryCode]
-                        )
-                        let rightChoicePosition = (0..<self.gameSettings.numPossibleChoices).randomElement()!
-                        let question = Question(
-                            id: questionId,
-                            coatOfArmsURL: serverCountry.coatOfArmsURL,
-                            otherChoices: otherChoices,
-                            rightChoicePosition: rightChoicePosition
-                        )
-                        await self.sourceOfTruth.add(question)
-                    }
+                    with: .run(
+                        operation: { _ in
+                            let url = URL(string: "https://restcountries.com/v3.1/alpha/\(questionId.countryCode)")!
+                            let response: ServerResponse = try await network.request(url: url)
+                            let serverCountry = response.country
+                            let otherChoices = self.randomCountryGenerator.generateCodes(
+                                n: self.gameSettings.numPossibleChoices - 1,
+                                excluding: [questionId.countryCode]
+                            )
+                            let rightChoicePosition = (0..<self.gameSettings.numPossibleChoices).randomElement()!
+                            let question = Question(
+                                id: questionId,
+                                coatOfArmsURL: serverCountry.coatOfArmsURL,
+                                otherChoices: otherChoices,
+                                rightChoicePosition: rightChoicePosition
+                            )
+                            await self.sourceOfTruth.add(question)
+                        },
+                        catch: { error, send in
+                            await send(.emtpyCoatOfArmsError)
+                        }
+                    )
                 )
 
             case .update(let question):
@@ -74,7 +80,10 @@ struct QuestionFeature {
                 state.buttons = buttons
                 return .none
                 
-            case .buttons(let action):
+            case .buttons:
+                return .none
+                
+            case .emtpyCoatOfArmsError:
                 return .none
             }
         }

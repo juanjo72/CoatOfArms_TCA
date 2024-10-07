@@ -11,20 +11,29 @@ import SwiftUI
 
 @main
 struct CoatOfArms_TCAApp: App {
-    let store: StoreOf<GameFeature> = {
+    let store: StoreOf<AppFeature> = {
         Store(
-            initialState: GameFeature.State(id: .now),
+            initialState: AppFeature.State.idle,
             reducer: {
-                GameFeature()
+                AppFeature()
             }
         )
     }()
 
     var body: some Scene {
         WindowGroup {
-            GameView(
-                store: store
-            )
+            VStack {
+                switch store.state {
+                case .idle:
+                    Spacer()
+                case .playing:
+                    if let childStore = store.scope(state: \.playing, action: \.playing) {
+                        GameView(store: childStore)
+                    }
+                case .gameOver:
+                    Text("Game Over")
+                }
+            }
             .onAppear {
                 store.send(.viewWillAppear)
             }

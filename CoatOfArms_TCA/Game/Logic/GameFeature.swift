@@ -21,7 +21,7 @@ struct GameFeature {
         case viewWillAppear
         case question(QuestionFeature.Action)
         case remainingLives(RemainingLivesFeature.Action)
-        case gameOVer
+        case gameOver
     }
     
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator
@@ -46,13 +46,19 @@ struct GameFeature {
                 
             case .remainingLives(.update(numberOfLives: let n)):
                 if n == 0 {
-                    return .send(.gameOVer)
+                    return .send(.gameOver)
                 } else {
                     return .none
                 }
                 
-            case .gameOVer:
-                state.question = nil
+            case .question(.emtpyCoatOfArmsError):
+                let code = randomCountryGenerator.generateCode(excluding: state.history)
+                let newQuestion = QuestionFeature.State(id: Question.ID(gameStamp: state.id, countryCode: code))
+                state.history.append(newQuestion.id.countryCode)
+                state.question = newQuestion
+                return .none
+                
+            case .gameOver:
                 return .none
 
             default:
