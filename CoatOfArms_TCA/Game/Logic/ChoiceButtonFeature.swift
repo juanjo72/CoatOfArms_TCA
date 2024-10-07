@@ -16,21 +16,20 @@ struct ChoiceButtonFeature {
     struct State: Equatable, Identifiable {
         let id: CountryCode
         let questionId: Question.ID
-        
         var label: String = ""
-        var tint: Color = .clear
+        var tint: Color = .accentColor
     }
     
     enum Action: Equatable {
         case viewWillAppear
         case userDidTap
         case updateCurrentChoice(UserChoice?)
+        case done
     }
 
     @Dependency(\.gameSettings) var gameSetting
     @Dependency(\.getCountryName) var getCountryName
     @Dependency(\.playSound) var playSound
-    @Dependency(\.gameRouter) var gameRouter
     @Dependency(\.sourceOfTruth) var sourceOfTruth
     
     var body: some ReducerOf<Self> {
@@ -68,7 +67,7 @@ struct ChoiceButtonFeature {
                     }
                     
                     try? await Task.sleep(for: gameSetting.resultTime)
-                    await gameRouter.gotNextQuestion()
+                    await send(.done)
                 }
                 
             case .updateCurrentChoice(let choice):
@@ -77,6 +76,9 @@ struct ChoiceButtonFeature {
                     return .none
                 }
                 state.tint = choice.isCorrect ? .green : .red
+                return .none
+                
+            case .done:
                 return .none
             }
         }

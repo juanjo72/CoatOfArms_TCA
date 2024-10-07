@@ -5,39 +5,29 @@
 //  Created on 30/9/24.
 //
 
+import Foundation
 import ComposableArchitecture
 import SwiftUI
 
 @main
 struct CoatOfArms_TCAApp: App {
+    let store: StoreOf<GameFeature> = {
+        Store(
+            initialState: GameFeature.State(id: .now),
+            reducer: {
+                GameFeature()
+            }
+        )
+    }()
+
     var body: some Scene {
         WindowGroup {
-            QuestionView(
-                store: Store(
-                    initialState: QuestionFeature.State(
-                        id: Question.ID(
-                            gameStamp: Date(timeIntervalSince1970: 0),
-                            countryCode: "ES"
-                        )
-                    ),
-                    reducer: {
-                        QuestionFeature()
-                    }
-                )
+            GameView(
+                store: store
             )
-            .padding()
-            
-            RemainingLivesView(
-                store: Store(
-                    initialState: RemainingLivesFeature.State(
-                        id: Question.ID(
-                            gameStamp: Date(timeIntervalSince1970: 0),
-                            countryCode: "ES"
-                        )
-                    ),
-                    reducer: { RemainingLivesFeature() }
-                )
-            )
+            .onAppear {
+                store.send(.viewWillAppear)
+            }
         }
     }
 }

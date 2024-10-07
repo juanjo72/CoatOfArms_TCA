@@ -13,7 +13,6 @@ struct QuestionFeature {
     @ObservableState
     struct State: Equatable, Identifiable {
         let id: Question.ID
-        
         var imageSource: ImageSource?
         var buttons: IdentifiedArrayOf<ChoiceButtonFeature.State> = []
     }
@@ -76,10 +75,6 @@ struct QuestionFeature {
                 return .none
                 
             case .buttons(let action):
-                if case .element(let id, let action) = action {
-                    print("[CHILD-ACTION] \(id) \(String(describing: action))")
-                }
-                
                 return .none
             }
         }
