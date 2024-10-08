@@ -17,32 +17,15 @@ private enum GetCountryNameKey: DependencyKey {
         mock.callAsFunctionForReturnValue = "Spain"
         return mock
     }
+
+    static var previewValue: any GetCountryNameProtocol {
+        GetCountryName(locale: .init(identifier: "en_US"))
+    }
 }
 
 extension DependencyValues {
     var getCountryName: GetCountryNameProtocol {
         get { self[GetCountryNameKey.self] }
         set { self[GetCountryNameKey.self] = newValue }
-    }
-}
-
-final class GetCountryNameProtocolMock: GetCountryNameProtocol {
-    
-   // MARK: - callAsFunction
-
-    var callAsFunctionForCallsCount = 0
-    var callAsFunctionForCalled: Bool {
-        callAsFunctionForCallsCount > 0
-    }
-    var callAsFunctionForReceivedCountry: CountryCode?
-    var callAsFunctionForReceivedInvocations: [CountryCode] = []
-    var callAsFunctionForReturnValue: String!
-    var callAsFunctionForClosure: ((CountryCode) -> String)?
-
-    func callAsFunction(for country: CountryCode) -> String {
-        callAsFunctionForCallsCount += 1
-        callAsFunctionForReceivedCountry = country
-        callAsFunctionForReceivedInvocations.append(country)
-        return callAsFunctionForClosure.map({ $0(country) }) ?? callAsFunctionForReturnValue
     }
 }

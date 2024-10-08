@@ -25,25 +25,3 @@ final class PlaySound: PlaySoundProtocol {
         }
     }
 }
-
-// MARK: - PlaySoundProtocolMock -
-
-final class PlaySoundProtocolMock: PlaySoundProtocol {
-    
-   // MARK: - callAsFunction
-
-    var callAsFunctionSoundCallsCount = 0
-    var callAsFunctionSoundCalled: Bool {
-        callAsFunctionSoundCallsCount > 0
-    }
-    var callAsFunctionSoundReceivedSound: SoundEffect?
-    var callAsFunctionSoundReceivedInvocations: [SoundEffect] = []
-    var callAsFunctionSoundClosure: ((SoundEffect) -> Void)?
-
-    func callAsFunction(sound: SoundEffect) {
-        callAsFunctionSoundCallsCount += 1
-        callAsFunctionSoundReceivedSound = sound
-        callAsFunctionSoundReceivedInvocations.append(sound)
-        callAsFunctionSoundClosure?(sound)
-    }
-}

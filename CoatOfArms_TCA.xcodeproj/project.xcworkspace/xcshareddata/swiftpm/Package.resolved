@@ -1,5 +1,5 @@
 {
-  "originHash" : "8e14164587807cb4a280c3142d7e7489f752b53856e2ee2139b2ba1d45b09e05",
+  "originHash" : "467990dfef6bc7650829f0ba13562e133824b04b7b51655b6ea378447b63fd54",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",
       "state" : {
-        "revision" : "642e6aab8e03e5f992d9c83e38c5be98cfad5078",
-        "version" : "1.5.5"
+        "revision" : "bc92c4b27f9a84bfb498cdbfdf35d5a357e9161f",
+        "version" : "1.5.6"
       }
     },
     {
@@ -141,8 +141,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
       "state" : {
-        "revision" : "27d767d643fa2cf083d0a73d74fa84cacb53e85c",
-        "version" : "1.4.1"
+        "revision" : "770f990d3e4eececb57ac04a6076e22f8c97daeb",
+        "version" : "1.4.2"
       }
     }
   ],

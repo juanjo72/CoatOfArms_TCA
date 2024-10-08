@@ -22,14 +22,12 @@ struct ChoiceButtonFeature {
 
     enum Action: Equatable {
         case viewWillAppear
-        case userDidTap
         case updateCurrentChoice(UserChoice?)
-        case done
+        case userDidTap
+        case answered(isCorrect: Bool)
     }
 
-    @Dependency(\.gameSettings) var gameSetting
     @Dependency(\.getCountryName) var getCountryName
-    @Dependency(\.playSound) var playSound
     @Dependency(\.sourceOfTruth) var sourceOfTruth
 
     var body: some ReducerOf<Self> {
@@ -50,6 +48,14 @@ struct ChoiceButtonFeature {
                     .map(Action.updateCurrentChoice)
                 }
 
+            case .updateCurrentChoice(let choice):
+                guard let choice else {
+                    state.tint = .accentColor
+                    return .none
+                }
+                state.tint = choice.isCorrect ? .green : .red
+                return .none
+
             case .userDidTap:
                 let buttonId = state.id
                 let questionId = state.questionId
@@ -59,26 +65,10 @@ struct ChoiceButtonFeature {
                         pickedCountryCode: buttonId
                     )
                     await sourceOfTruth.add(answer)
-                    
-                    if answer.isCorrect {
-                        await playSound(sound: .rightAnswer)
-                    } else {
-                        await playSound(sound: .wrongAnswer)
-                    }
-                    
-                    try? await Task.sleep(for: gameSetting.resultTime)
-                    await send(.done)
+                    await send(.answered(isCorrect: answer.isCorrect))
                 }
 
-            case .updateCurrentChoice(let choice):
-                guard let choice else {
-                    state.tint = .accentColor
-                    return .none
-                }
-                state.tint = choice.isCorrect ? .green : .red
-                return .none
-
-            case .done:
+            case .answered:
                 return .none
             }
         }

@@ -21,14 +21,16 @@ struct QuestionFeature {
         case viewWillAppear
         case update(question: Question?)
         case buttons(IdentifiedActionOf<ChoiceButtonFeature>)
-        case emtpyCoatOfArmsError
+        case answered(isGameOver: Bool)
+        case emptpyCoatOfArmsError
     }
     
-    @Dependency(\.sourceOfTruth) var sourceOfTruth
     @Dependency(\.gameSettings) var gameSettings
     @Dependency(\.network) var network
+    @Dependency(\.playSound) var playSound
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator
-    
+    @Dependency(\.sourceOfTruth) var sourceOfTruth
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -61,7 +63,7 @@ struct QuestionFeature {
                             await self.sourceOfTruth.add(question)
                         },
                         catch: { error, send in
-                            await send(.emtpyCoatOfArmsError)
+                            await send(.emptpyCoatOfArmsError)
                         }
                     )
                 )
@@ -80,10 +82,25 @@ struct QuestionFeature {
                 state.buttons = buttons
                 return .none
                 
-            case .buttons:
-                return .none
-                
-            case .emtpyCoatOfArmsError:
+            case .buttons(.element(id: _, action: .answered(let isCorrect))):
+                let game = state.id.gameStamp
+                return .run { send in
+                    if isCorrect {
+                        await playSound(sound: .rightAnswer)
+                    } else {
+                        await playSound(sound: .wrongAnswer)
+                    }
+
+                    let wrongCount = await sourceOfTruth.getAllElements(of: UserChoice.self)
+                        .filter { $0.id.gameStamp == game }
+                        .filter { !$0.isCorrect }
+                        .count
+                    let isGameOver = (gameSettings.maxWrongAnswers - wrongCount == 0)
+
+                    await send(.answered(isGameOver: isGameOver))
+                }
+
+            default:
                 return .none
             }
         }

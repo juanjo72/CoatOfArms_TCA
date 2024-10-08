@@ -21,45 +21,36 @@ struct GameFeature {
         case viewWillAppear
         case question(QuestionFeature.Action)
         case remainingLives(RemainingLivesFeature.Action)
+        case newQuestion
         case gameOver(GameStamp)
     }
     
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator
-    
+    @Dependency(\.gameSettings) var gameSettings
+
     var body: some ReducerOf<Self> {
         Reduce() { state, action in
             switch action {
             case .viewWillAppear:
                 state.remainingLives = RemainingLivesFeature.State(id: state.id)
-                let code = randomCountryGenerator.generateCode(excluding: [])
-                let newQuestion = QuestionFeature.State(id: Question.ID(gameStamp: state.id, countryCode: code))
-                state.history.append(newQuestion.id.countryCode)
-                state.question = newQuestion
-                return .none
+                return .send(.newQuestion)
 
-            case .question(.buttons(.element(id: _, action: .done))):
-                let code = randomCountryGenerator.generateCode(excluding: state.history)
-                let newQuestion = QuestionFeature.State(id: Question.ID(gameStamp: state.id, countryCode: code))
-                state.history.append(newQuestion.id.countryCode)
-                state.question = newQuestion
-                return .none
-
-            case .remainingLives(.update(numberOfLives: let n)):
-                if n == 0 {
-                    return .send(.gameOver(state.id))
-                } else {
-                    return .none
+            case .question(.answered(let isGameOver)):
+                let game = state.id
+                return .run { send in
+                    try? await Task.sleep(for: gameSettings.resultTime)
+                    await send(isGameOver ? .gameOver(game) : .newQuestion)
                 }
 
-            case .question(.emtpyCoatOfArmsError):
+            case .newQuestion:
                 let code = randomCountryGenerator.generateCode(excluding: state.history)
                 let newQuestion = QuestionFeature.State(id: Question.ID(gameStamp: state.id, countryCode: code))
                 state.history.append(newQuestion.id.countryCode)
                 state.question = newQuestion
                 return .none
 
-            case .gameOver:
-                return .none
+            case .question(.emptpyCoatOfArmsError):
+                return .send(.newQuestion)
 
             default:
                 return .none
