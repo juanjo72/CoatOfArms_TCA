@@ -26,8 +26,9 @@ struct GameFeature {
         case remainingLives(RemainingLivesFeature.Action)
     }
     
-    @Dependency(\.randomCountryGenerator) var randomCountryGenerator
+    @Dependency(\.continuousClock) var continuousClock
     @Dependency(\.gameSettings) var gameSettings
+    @Dependency(\.randomCountryGenerator) var randomCountryGenerator
 
     var body: some ReducerOf<Self> {
         Reduce() { state, action in
@@ -36,13 +37,6 @@ struct GameFeature {
                 state.remainingLives = RemainingLivesFeature.State(id: state.id)
                 return .send(.newQuestion)
 
-            case .question(.answered(let isGameOver)):
-                let game = state.id
-                return .run { send in
-                    try? await Task.sleep(for: gameSettings.resultTime)
-                    await send(isGameOver ? .gameOver(game) : .newQuestion)
-                }
-
             case .newQuestion:
                 let code = randomCountryGenerator.generateCode(excluding: state.history)
                 let newQuestion = QuestionFeature.State(id: Question.ID(gameStamp: state.id, countryCode: code))
@@ -50,8 +44,18 @@ struct GameFeature {
                 state.question = newQuestion
                 return .none
 
+            case .question(.answered(let isGameOver)):
+                let game = state.id
+                return .run { send in
+                    try? await continuousClock.sleep(for: gameSettings.resultTime)
+                    await send(isGameOver ? .gameOver(game) : .newQuestion)
+                }
+
             case .question(.emptpyCoatOfArmsError):
                 return .send(.newQuestion)
+
+            case .gameOver:
+                return .none
 
             default:
                 return .none

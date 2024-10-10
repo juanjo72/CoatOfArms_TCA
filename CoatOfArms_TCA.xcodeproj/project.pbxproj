@@ -14,7 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		814DF02C2CAAD69C00192D55 /* PBXContainerItemProxy */ = {
+		81A6B6E32CB8090E00782AF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 814DF0132CAAD69B00192D55 /* Project object */;
 			proxyType = 1;
@@ -26,6 +26,7 @@
 /* Begin PBXFileReference section */
 		814DF01B2CAAD69B00192D55 /* CoatOfArms_TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoatOfArms_TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoatOfArms_TCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A6B6E82CB834FA00782AF3 /* CoatOfArms_TCA.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoatOfArms_TCA.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -68,6 +69,8 @@
 			children = (
 				814DF01D2CAAD69B00192D55 /* CoatOfArms_TCA */,
 				814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */,
+				81A6B6E82CB834FA00782AF3 /* CoatOfArms_TCA.xctestplan */,
+				81A6B6E92CB8373000782AF3 /* Frameworks */,
 				814DF01C2CAAD69B00192D55 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +82,13 @@
 				814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		81A6B6E92CB8373000782AF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,7 +131,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				814DF02D2CAAD69C00192D55 /* PBXTargetDependency */,
+				81A6B6E42CB8090E00782AF3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */,
@@ -213,10 +223,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		814DF02D2CAAD69C00192D55 /* PBXTargetDependency */ = {
+		81A6B6E42CB8090E00782AF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 814DF01A2CAAD69B00192D55 /* CoatOfArms_TCA */;
-			targetProxy = 814DF02C2CAAD69C00192D55 /* PBXContainerItemProxy */;
+			targetProxy = 81A6B6E32CB8090E00782AF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
