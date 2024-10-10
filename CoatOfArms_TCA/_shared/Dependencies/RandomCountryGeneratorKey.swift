@@ -14,7 +14,10 @@ private enum RandomCountryGeneratorKey: DependencyKey {
     }
     
     static var testValue: any RandomCountryCodeProviderProtocol {
-        RandomCountryCodeProviderProtocolMock()
+        let mock = RandomCountryCodeProviderProtocolMock()
+        mock.generateCodeExcludingReturnValue = "ES"
+        mock.generateCodesNExcludingReturnValue = ["IT", "FR", "DE"]
+        return mock
     }
 }
 

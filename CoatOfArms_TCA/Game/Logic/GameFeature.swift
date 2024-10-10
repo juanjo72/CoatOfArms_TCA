@@ -19,10 +19,11 @@ struct GameFeature {
     
     enum Action: Equatable {
         case viewWillAppear
-        case question(QuestionFeature.Action)
-        case remainingLives(RemainingLivesFeature.Action)
         case newQuestion
         case gameOver(GameStamp)
+        // children's actions
+        case question(QuestionFeature.Action)
+        case remainingLives(RemainingLivesFeature.Action)
     }
     
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator

@@ -3,4 +3,52 @@
    uuid = "CBAA3494-B046-43FD-9F13-496DF3D9283A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A81EAA84-B457-457B-A435-4F6566E04821"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoatOfArms_TCA/_shared/Mocks/StorageProtocolMock.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getSingleElementObservable(of:id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A81EAA84-B457-457B-A435-4F6566E04821 - cea883c216870d8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoatOfArms_TCA.StorageProtocolMock.getSingleElementObservable&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Identifiable&gt;(of: &#x3c4;_0_0.Type, id: &#x3c4;_0_0.ID) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;&#x3c4;_0_0&gt;, Swift.Never&gt;"
+                  moduleName = "CoatOfArms_TCA.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/juanjo/Library/Mobile%20Documents/com~apple~CloudDocs/Projectos/Github/CoatOfArms/CoatOfArms_TCA/CoatOfArms_TCA/_shared/Mocks/StorageProtocolMock.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+               <Location
+                  uuid = "A81EAA84-B457-457B-A435-4F6566E04821 - 76277c4819c88b27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Any.Type, Any) -&gt; Any) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;&#x3c4;_0_0&gt;, Swift.Never&gt; in CoatOfArms_TCA.StorageProtocolMock.getSingleElementObservable&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Identifiable&gt;(of: &#x3c4;_0_0.Type, id: &#x3c4;_0_0.ID) -&gt; Combine.AnyPublisher&lt;Swift.Optional&lt;&#x3c4;_0_0&gt;, Swift.Never&gt;"
+                  moduleName = "CoatOfArms_TCA.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/juanjo/Library/Mobile%20Documents/com~apple~CloudDocs/Projectos/Github/CoatOfArms/CoatOfArms_TCA/CoatOfArms_TCA/_shared/Mocks/StorageProtocolMock.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

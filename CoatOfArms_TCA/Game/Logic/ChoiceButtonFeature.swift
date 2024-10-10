@@ -17,13 +17,13 @@ struct ChoiceButtonFeature {
         let id: CountryCode
         let questionId: Question.ID
         var label: String = ""
-        var tint: Color = .accentColor
+        var tint: Color = .clear
     }
 
     enum Action: Equatable {
         case viewWillAppear
-        case updateCurrentChoice(UserChoice?)
         case userDidTap
+        case updateCurrentChoice(UserChoice?)
         case answered(isCorrect: Bool)
     }
 
@@ -34,8 +34,8 @@ struct ChoiceButtonFeature {
         Reduce { state, action in
             switch action {
             case .viewWillAppear:
-                let buttonId = state.id
                 state.label = getCountryName(for: state.id)
+                let buttonId = state.id
                 return .publisher {
                     sourceOfTruth.getSingleElementObservable(
                         of: UserChoice.self,

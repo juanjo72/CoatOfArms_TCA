@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 import Network
 
 private enum NetworkKey: DependencyKey {
@@ -14,7 +15,14 @@ private enum NetworkKey: DependencyKey {
     }
     
     static var testValue: any NetworkProtocol {
-        NetworkProtocolMock()
+        let mock = NetworkProtocolMock()
+        mock.requestUrlReturnValue = ServerResponse(
+            country: ServerCountry(
+                id: "ES",
+                coatOfArmsURL: URL(string: "https://restcountries.com/v3.1/alpha/ES")!
+            )
+        )
+        return mock
     }
 }
 
