@@ -14,7 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		81A6B6E32CB8090E00782AF3 /* PBXContainerItemProxy */ = {
+		81EFD9932CB91D06003785A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 814DF0132CAAD69B00192D55 /* Project object */;
 			proxyType = 1;
@@ -38,6 +38,11 @@
 		814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CoatOfArms_TCATests;
+			sourceTree = "<group>";
+		};
+		81EFD9892CB91B23003785A4 /* CoatOfArms_TCATests_2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CoatOfArms_TCATests_2;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -70,6 +75,7 @@
 				814DF01D2CAAD69B00192D55 /* CoatOfArms_TCA */,
 				814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */,
 				81A6B6E82CB834FA00782AF3 /* CoatOfArms_TCA.xctestplan */,
+				81EFD9892CB91B23003785A4 /* CoatOfArms_TCATests_2 */,
 				81A6B6E92CB8373000782AF3 /* Frameworks */,
 				814DF01C2CAAD69B00192D55 /* Products */,
 			);
@@ -131,7 +137,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				81A6B6E42CB8090E00782AF3 /* PBXTargetDependency */,
+				81EFD9942CB91D06003785A4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				814DF02E2CAAD69C00192D55 /* CoatOfArms_TCATests */,
@@ -223,10 +229,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		81A6B6E42CB8090E00782AF3 /* PBXTargetDependency */ = {
+		81EFD9942CB91D06003785A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 814DF01A2CAAD69B00192D55 /* CoatOfArms_TCA */;
-			targetProxy = 81A6B6E32CB8090E00782AF3 /* PBXContainerItemProxy */;
+			targetProxy = 81EFD9932CB91D06003785A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
