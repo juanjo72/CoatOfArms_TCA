@@ -13,40 +13,16 @@ import Testing
 
 @Suite("ChoiceButtonFeatureTests", .tags(.logicLayer)) @MainActor
 struct ChoiceButtonFeatureTests {
-    @Test("Button title")
-    func test_WhenViewWillAppear_ThenLabelIsExpected() async throws {
+    @Test("onAppear", arguments: ["FR", "ES"])
+    func testOnAppear(code: String) async throws {
         let questionId = Question.ID(
             gameStamp: .now,
             countryCode: "ES"
         )
-        let getCountryName = GetCountryNameProtocolMock()
-        getCountryName.callAsFunctionForReturnValue = "France"
-        let store = TestStore(
-            initialState: ChoiceButtonFeature.State(
-                id: "ES",
-                questionId: questionId
-            ),
-            reducer: {
-                ChoiceButtonFeature()
-            },
-            withDependencies: {
-                $0.getCountryName = getCountryName
-            }
+        let userChoice = UserChoice(
+            id: questionId,
+            pickedCountryCode: code
         )
-        store.exhaustivity = .off
-
-        await store.send(.viewWillAppear) {
-            $0.label = "France"
-        }
-    }
-
-    @Test("Button color", arguments: ["FR", "ES"])
-    func example_2(code: String) async throws {
-        let questionId = Question.ID(
-            gameStamp: .now,
-            countryCode: "ES"
-        )
-        let userChoice = UserChoice(id: questionId, pickedCountryCode: code)
         let getCountryName = GetCountryNameProtocolMock()
         getCountryName.callAsFunctionForReturnValue = "Title"
         let sourceOfTruth = StorageProtocolMock()
@@ -61,24 +37,26 @@ struct ChoiceButtonFeatureTests {
             reducer: {
                 ChoiceButtonFeature()
             },
-            withDependencies: { values in
-                values.sourceOfTruth = sourceOfTruth
-                values.getCountryName = getCountryName
+            withDependencies: {
+                $0.getCountryName = getCountryName
+                $0.sourceOfTruth = sourceOfTruth
             }
         )
 
-        let task = await store.send(.viewWillAppear) {
+        let task = await store.send(\.view.onAppear) {
             $0.label = "Title"
         }
+
         let expectedColor: [CountryCode: Color] = ["ES": .green, "FR": .red]
-        await store.receive(.updateCurrentChoice(userChoice)) {
+        await store.receive(._didObserveChoice(userChoice)) {
             $0.tint = expectedColor[code]!
         }
+        await store.receive(.delegate(.didAnswer))
         await task.cancel()
     }
 
-    @Test("User tapping")
-    func test() async {
+    @Test("userDidTap")
+    func testUserDidTap() async {
         let questionId = Question.ID(
             gameStamp: .now,
             countryCode: "ES"
@@ -100,8 +78,7 @@ struct ChoiceButtonFeatureTests {
             }
         )
 
-        await store.send(.userDidTap)
-        await store.receive(.answered(isCorrect: false))
+        await store.send(.view(.userDidTap))
         #expect(sourceOfTruth.addCallsCount == 1)
         #expect(sourceOfTruth.addReceivedElement as! UserChoice == UserChoice(id: questionId, pickedCountryCode: "FR"))
     }

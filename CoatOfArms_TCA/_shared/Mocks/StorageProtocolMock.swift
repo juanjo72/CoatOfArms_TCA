@@ -7,7 +7,7 @@
 
 import Combine
 
-final class StorageProtocolMock: StorageProtocol {
+final class StorageProtocolMock: StorageProtocol, @unchecked Sendable {
 
    // MARK: - getAllElementsObservable<Entity: Identifiable>
 

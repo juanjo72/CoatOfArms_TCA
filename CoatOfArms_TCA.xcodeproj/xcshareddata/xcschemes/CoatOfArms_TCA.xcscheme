@@ -34,19 +34,6 @@
             default = "YES">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "814DF02A2CAAD69C00192D55"
-               BuildableName = "CoatOfArms_TCATests.xctest"
-               BlueprintName = "CoatOfArms_TCATests"
-               ReferencedContainer = "container:CoatOfArms_TCA.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

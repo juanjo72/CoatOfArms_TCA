@@ -5,7 +5,7 @@
 //  Created on 8/10/24.
 //
 
-final class PlaySoundProtocolMock: PlaySoundProtocol {
+final class PlaySoundProtocolMock: PlaySoundProtocol, @unchecked Sendable {
 
    // MARK: - callAsFunction
 

@@ -16,11 +16,15 @@ struct AppFeature {
         case gameOver(GameOverFeature.State)
     }
 
-    enum Action: Equatable {
-        case viewWillAppear
-        // children's actions
+    enum Action: Equatable, ViewAction {
+        case view(ViewAction)
         case playing(GameFeature.Action)
         case gameOver(GameOverFeature.Action)
+
+        @CasePathable
+        enum ViewAction {
+            case onAppear
+        }
     }
 
     @Dependency(\.date) var dateGenerator
@@ -28,19 +32,22 @@ struct AppFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .viewWillAppear:
+            case .view(.onAppear):
                 state = .playing(GameFeature.State(id: dateGenerator.now))
                 return .none
 
-            case .playing(.gameOver(let gameStamp)):
+            case .playing(.delegate(.gameOver(let gameStamp))):
                 state = .gameOver(GameOverFeature.State(game: gameStamp))
                 return .none
 
-            case .gameOver(.userDidTapRestartButton):
+            case .playing:
+                return .none
+                
+            case .gameOver(.delegate(.userDidTapRestartButton)):
                 state = .playing(GameFeature.State(id: dateGenerator.now))
                 return .none
-
-            default:
+                
+            case .gameOver:
                 return .none
             }
         }

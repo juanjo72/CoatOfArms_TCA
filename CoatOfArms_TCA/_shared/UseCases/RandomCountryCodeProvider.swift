@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RandomCountryCodeProviderProtocol {
+protocol RandomCountryCodeProviderProtocol: Sendable {
     func generateCode(excluding: [CountryCode]) -> CountryCode
     func generateCodes(n: Int, excluding: [CountryCode]) -> [CountryCode]
 }
@@ -19,7 +19,7 @@ extension RandomCountryCodeProviderProtocol {
 }
 
 /// Provides random country codes
-struct RandomCountryCodeProvider: RandomCountryCodeProviderProtocol {
+struct RandomCountryCodeProvider: RandomCountryCodeProviderProtocol, @unchecked Sendable {
     func generateCode(excluding: [CountryCode]) -> CountryCode {
         self.generateCodes(n: 1, excluding: excluding).first!
     }

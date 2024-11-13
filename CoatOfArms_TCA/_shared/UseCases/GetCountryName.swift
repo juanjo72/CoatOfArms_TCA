@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GetCountryNameProtocol {
+protocol GetCountryNameProtocol: Sendable {
     func callAsFunction(for country: CountryCode) -> String
 }
 

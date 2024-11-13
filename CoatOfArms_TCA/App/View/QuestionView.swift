@@ -14,6 +14,7 @@ enum ImageSource: Equatable {
     case image(Image)
 }
 
+@ViewAction(for: QuestionFeature.self)
 struct QuestionView: View {
     let store: StoreOf<QuestionFeature>
     
@@ -49,7 +50,7 @@ struct QuestionView: View {
             .layoutPriority(1)
         }
         .onAppear() {
-            self.store.send(.viewWillAppear)
+            send(.onAppear)
         }
     }
 }
@@ -63,7 +64,9 @@ struct QuestionView: View {
                     countryCode: "ES"
                 )
             ),
-            reducer: { QuestionFeature() }
+            reducer: {
+                QuestionFeature()
+            }
         )
     )
     .padding()

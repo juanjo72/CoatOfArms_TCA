@@ -12,11 +12,11 @@ enum SoundEffect: SystemSoundID {
     case wrongAnswer = 1006
 }
 
-protocol PlaySoundProtocol {
+protocol PlaySoundProtocol: Sendable {
     func callAsFunction(sound: SoundEffect) async
 }
 
-final class PlaySound: PlaySoundProtocol {
+final class PlaySound: PlaySoundProtocol, @unchecked Sendable {
     func callAsFunction(sound: SoundEffect) async {
         await withCheckedContinuation { continuation in
             AudioServicesPlaySystemSoundWithCompletion(sound.rawValue) {

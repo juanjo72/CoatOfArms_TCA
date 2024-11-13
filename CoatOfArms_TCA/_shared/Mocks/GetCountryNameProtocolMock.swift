@@ -5,7 +5,7 @@
 //  Created on 8/10/24.
 //
 
-final class GetCountryNameProtocolMock: GetCountryNameProtocol {
+final class GetCountryNameProtocolMock: GetCountryNameProtocol, @unchecked Sendable {
 
    // MARK: - callAsFunction
 

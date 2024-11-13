@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class NetworkProtocolMock: NetworkProtocol {
+final class NetworkProtocolMock: NetworkProtocol, @unchecked Sendable {
 
    // MARK: - request<T: Decodable>
 

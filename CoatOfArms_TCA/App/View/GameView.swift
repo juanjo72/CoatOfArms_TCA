@@ -8,9 +8,11 @@
 import ComposableArchitecture
 import SwiftUI
 
+@ViewAction(for: GameFeature.self)
 struct GameView: View {
     let store: StoreOf<GameFeature>
-    
+    let style: Style
+
     var body: some View {
         VStack(
             spacing: 30
@@ -20,14 +22,20 @@ struct GameView: View {
                     .id(childStore.state.id)
             }
             
-            if let childStore = store.scope(state: \.remainingLives, action: \.remainingLives) {
-                RemainingLivesView(store: childStore)
+            if let childStore = store.scope(state: \.livesCount, action: \.livesCount) {
+                LivesCountView(store: childStore, style: style.remaininLives)
                     .id(childStore.state.id)
             }
         }
         .padding()
         .onAppear {
-            store.send(.viewWillAppear)
+            send(.onAppear)
         }
+    }
+}
+
+extension GameView {
+    struct Style {
+        let remaininLives: LivesCountView.Style
     }
 }

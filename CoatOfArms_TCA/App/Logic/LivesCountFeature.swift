@@ -1,5 +1,5 @@
 //
-//  RemainingLivesFeature.swift
+//  LivesCountFeature.swift
 //  CoatOfArms_TCA
 //
 //  Created on 2/10/24.
@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 @Reducer
-struct RemainingLivesFeature {
+struct LivesCountFeature {
     @ObservableState
     struct State: Equatable {
         let id: GameStamp
@@ -16,9 +16,14 @@ struct RemainingLivesFeature {
         var totalLives: Int = 0
     }
 
-    enum Action: Equatable {
-        case viewWillAppear
+    enum Action: Equatable, ViewAction {
+        case view(ViewAction)
         case update(numberOfLives: Int)
+
+        @CasePathable
+        enum ViewAction {
+            case onAppear
+        }
     }
 
     @Dependency(\.gameSettings) var gameSetting
@@ -27,7 +32,7 @@ struct RemainingLivesFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .viewWillAppear:
+            case .view(.onAppear):
                 state.totalLives = gameSetting.maxWrongAnswers
                 let gameStamp = state.id
                 return .publisher {

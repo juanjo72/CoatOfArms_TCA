@@ -1,23 +1,18 @@
 {
   "configurations" : [
     {
-      "id" : "BB39EEE0-4936-442F-8AB4-4C5486099585",
-      "name" : "Test Scheme Action",
+      "id" : "FAAFDE61-B6C8-495E-94F4-DDDF4D0E9378",
+      "name" : "Configuration 1",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:CoatOfArms_TCA.xcodeproj",
-      "identifier" : "814DF01A2CAAD69B00192D55",
-      "name" : "CoatOfArms_TCA"
-    }
+
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:CoatOfArms_TCA.xcodeproj",
         "identifier" : "814DF02A2CAAD69C00192D55",

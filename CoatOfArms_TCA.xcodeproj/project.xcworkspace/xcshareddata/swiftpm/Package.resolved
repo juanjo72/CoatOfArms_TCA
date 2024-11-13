@@ -1,5 +1,5 @@
 {
-  "originHash" : "467990dfef6bc7650829f0ba13562e133824b04b7b51655b6ea378447b63fd54",
+  "originHash" : "e8a0bd86dc907b9234ef8e5da495e39e244864904064b2fe354798a0ffb73612",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "33696a71dd4d71f1b0f781ade11a48ba5549581a",
-        "version" : "8.0.3"
+        "revision" : "c0940e241945e6378c01fbd45fd3815579d47ef5",
+        "version" : "8.1.0"
       }
     },
     {
@@ -25,16 +25,16 @@
       "location" : "https://github.com/juanjo72/Network.git",
       "state" : {
         "branch" : "main",
-        "revision" : "6dc949da8d5626c6f52ffe39e56d4ceb7f7b908a"
+        "revision" : "d89ccd66da338ded8b88431ecc624bd81c811c92"
       }
     },
     {
       "identity" : "reactivestorage",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/juanjo72/ReactiveStorage",
+      "location" : "https://github.com/juanjo72/ReactiveStorage.git",
       "state" : {
         "branch" : "main",
-        "revision" : "dbfd6ed24604b04d5686904a232e2c6c2a49a290"
+        "revision" : "ec22872b048a84d9671f3445b2e766ec9f503e87"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-composable-architecture.git",
       "state" : {
-        "revision" : "8013f1a72af8ccb2b1735d7aed831a8dc07c6fd0",
-        "version" : "1.15.0"
+        "revision" : "a952dde0bf2b13048843c8dcc72cf21737d67b0c",
+        "version" : "1.16.0"
       }
     },
     {
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-concurrency-extras",
       "state" : {
-        "revision" : "6054df64b55186f08b6d0fd87152081b8ad8d613",
-        "version" : "1.2.0"
+        "revision" : "163409ef7dae9d960b87f34b51587b6609a76c1f",
+        "version" : "1.3.0"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-dependencies",
       "state" : {
-        "revision" : "0fc0255e780bf742abeef29dec80924f5f0ae7b9",
-        "version" : "1.4.1"
+        "revision" : "28f82715ccd6799d7ed46c0720c23c768ef6b55c",
+        "version" : "1.5.1"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-navigation",
       "state" : {
-        "revision" : "d1bdbd8a5d1d1dfd2e4bb1f5e2f6facb631404d4",
-        "version" : "2.2.1"
+        "revision" : "16a27ab7ae0abfefbbcba73581b3e2380b47a579",
+        "version" : "2.2.2"
       }
     },
     {

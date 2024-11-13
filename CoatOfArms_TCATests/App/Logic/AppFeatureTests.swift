@@ -12,53 +12,41 @@ import Testing
 
 @Suite("AppFeature", .tags(.logicLayer)) @MainActor
 struct AppFeatureTests {
-
-    // MARK: viewWillAppear
-
-    @Test("Automatically starts playing")
-    func test_WhenViewWillAppear_ThenAppStatusIsPlaying() async throws {
-        // Given
+    @Test("onAppear")
+    func testOnAppear() async throws {
         let store = TestStore(
-            initialState: AppFeature.State.idle,
+            initialState: .idle,
             reducer: {
-                AppFeature() // SUT
+                AppFeature()
             },
             withDependencies: {
                 $0.date = DateGenerator.constant(Date.distantFuture)
             }
         )
 
-        // When
-        await store.send(.viewWillAppear) {
-            // Then
+        await store.send(\.view.onAppear) {
             $0 = .playing(GameFeature.State(id: Date.distantFuture))
         }
     }
 
-    // MARK: Chilren's actions
-
-    @Test("Detecting Game Over")
-    func test_WhenGameOverInGame_ThenAppStatusIsGameOver() async throws {
-        // Given
+    @Test("Game Over")
+    func testGameOver() async throws {
         let store = TestStore(
-            initialState: AppFeature.State.playing(GameFeature.State(id: Date.distantFuture)),
+            initialState: .playing(GameFeature.State(id: Date.distantFuture)),
             reducer: {
                 AppFeature()
             }
         )
 
-        // When
-        await store.send(.playing(.gameOver(Date.distantFuture))) {
-            // Then
+        await store.send(.playing(.delegate(.gameOver(Date.distantFuture)))) {
             $0 = .gameOver(GameOverFeature.State(game: Date.distantFuture))
         }
     }
 
-    @Test("Restart Button")
-    func test_WhenInGameOverAndRestartButtonTapped_ThenAppStatusIsPlaying() async throws {
-        // Given
+    @Test("New Game Button")
+    func testRestart() async throws {
         let store = TestStore(
-            initialState: AppFeature.State.gameOver(.init(game: Date.distantFuture)),
+            initialState: .gameOver(.init(game: Date.distantFuture)),
             reducer: {
                 AppFeature()
             },
@@ -67,9 +55,7 @@ struct AppFeatureTests {
             }
         )
 
-        // When
-        await store.send(.gameOver(.userDidTapRestartButton)) {
-            // Then
+        await store.send(.gameOver(.delegate(.userDidTapRestartButton))) {
             $0 = .playing(GameFeature.State(id: Date.distantPast))
         }
     }

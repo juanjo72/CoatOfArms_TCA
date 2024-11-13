@@ -20,20 +20,31 @@ struct ChoiceButtonFeature {
         var tint: Color = .clear
     }
 
-    enum Action: Equatable {
-        case viewWillAppear
-        case userDidTap
-        case updateCurrentChoice(UserChoice?)
-        case answered(isCorrect: Bool)
+    enum Action: Equatable, ViewAction {
+        case view(ViewAction)
+        case delegate(DelegateAction)
+        case _didObserveChoice(UserChoice?)
+
+        @CasePathable
+        enum ViewAction {
+            case onAppear
+            case userDidTap
+        }
+
+        @CasePathable
+        enum DelegateAction: Equatable {
+            case didAnswer
+        }
     }
 
     @Dependency(\.getCountryName) var getCountryName
+    @Dependency(\.playSound) var playSound
     @Dependency(\.sourceOfTruth) var sourceOfTruth
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .viewWillAppear:
+            case .view(.onAppear):
                 state.label = getCountryName(for: state.id)
                 let buttonId = state.id
                 return .publisher {
@@ -45,18 +56,10 @@ struct ChoiceButtonFeature {
                         guard let choice else { return true }
                         return choice.pickedCountryCode == buttonId
                     }
-                    .map(Action.updateCurrentChoice)
+                    .map(Action._didObserveChoice)
                 }
 
-            case .updateCurrentChoice(let choice):
-                guard let choice else {
-                    state.tint = .accentColor
-                    return .none
-                }
-                state.tint = choice.isCorrect ? .green : .red
-                return .none
-
-            case .userDidTap:
+            case .view(.userDidTap):
                 let buttonId = state.id
                 let questionId = state.questionId
                 return .run { send in
@@ -65,12 +68,28 @@ struct ChoiceButtonFeature {
                         pickedCountryCode: buttonId
                     )
                     await sourceOfTruth.add(answer)
-                    await send(.answered(isCorrect: answer.isCorrect))
                 }
 
-            case .answered:
+            case ._didObserveChoice(let choice):
+                guard let choice else {
+                    state.tint = .accentColor
+                    return .none
+                }
+                state.tint = choice.isCorrect ? .green : .red
+                return .run { send in
+                    if choice.isCorrect {
+                        await playSound(sound: .rightAnswer)
+                    } else {
+                        await playSound(sound: .wrongAnswer)
+                    }
+
+                    await send(.delegate(.didAnswer))
+                }
+
+            case .delegate:
                 return .none
             }
+
         }
     }
 }

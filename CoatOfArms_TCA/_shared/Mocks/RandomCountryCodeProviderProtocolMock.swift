@@ -5,7 +5,7 @@
 //  Created on 8/10/24.
 //
 
-final class RandomCountryCodeProviderProtocolMock: RandomCountryCodeProviderProtocol {
+final class RandomCountryCodeProviderProtocolMock: RandomCountryCodeProviderProtocol, @unchecked Sendable {
 
    // MARK: - generateCode
 

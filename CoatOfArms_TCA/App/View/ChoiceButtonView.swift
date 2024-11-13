@@ -8,13 +8,14 @@
 import ComposableArchitecture
 import SwiftUI
 
+@ViewAction(for: ChoiceButtonFeature.self)
 struct ChoiceButtonView: View {
     let store: StoreOf<ChoiceButtonFeature>
     
     var body: some View {
         Button(
             action: {
-                store.send(.userDidTap)
+                send(.userDidTap)
             },
             label: {
                 Text(store.label)
@@ -27,7 +28,7 @@ struct ChoiceButtonView: View {
         .tint(store.tint)
         .clipShape(Capsule())
         .onAppear() {
-            store.send(.viewWillAppear)
+            send(.onAppear)
         }
     }
 }

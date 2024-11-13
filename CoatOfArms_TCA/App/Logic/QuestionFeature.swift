@@ -17,31 +17,40 @@ struct QuestionFeature {
         var buttons: IdentifiedArrayOf<ChoiceButtonFeature.State> = []
     }
     
-    enum Action: Equatable {
-        case viewWillAppear
-        case update(question: Question?)
+    enum Action: Equatable, ViewAction {
+        case view(ViewAction)
+        case delegate(DelegateAction)
         case buttons(IdentifiedActionOf<ChoiceButtonFeature>)
-        case answered(isGameOver: Bool)
-        case emptpyCoatOfArmsError
+        case _didObserveQuestion(question: Question?)
+
+        @CasePathable
+        enum ViewAction {
+            case onAppear
+        }
+
+        @CasePathable
+        enum DelegateAction {
+            case didAnswer
+            case emptyCoatOfArmsError
+        }
     }
     
     @Dependency(\.gameSettings) var gameSettings
     @Dependency(\.network) var network
-    @Dependency(\.playSound) var playSound
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator
     @Dependency(\.sourceOfTruth) var sourceOfTruth
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .viewWillAppear:
+            case .view(.onAppear):
                 let questionId = state.id
                 return .publisher {
                     sourceOfTruth.getSingleElementObservable(
                         of: Question.self,
                         id: state.id
                     )
-                    .map(Action.update)
+                    .map(Action._didObserveQuestion)
                 }
                 .merge(
                     with: .run(
@@ -63,12 +72,23 @@ struct QuestionFeature {
                             await self.sourceOfTruth.add(question)
                         },
                         catch: { error, send in
-                            await send(.emptpyCoatOfArmsError)
+                            await send(.delegate(.emptyCoatOfArmsError))
                         }
                     )
                 )
 
-            case .update(let question):
+            case .buttons(.element(id: _, action: .delegate(.didAnswer))):
+                return .run {
+                    await $0(.delegate(.didAnswer))
+                }
+
+            case .buttons:
+                return .none
+
+            case .delegate:
+                return .none
+
+            case let ._didObserveQuestion(question):
                 guard let question else {
                     return .none
                 }
@@ -80,27 +100,6 @@ struct QuestionFeature {
                 }
                 state.imageSource = .url(question.coatOfArmsURL)
                 state.buttons = buttons
-                return .none
-                
-            case .buttons(.element(id: _, action: .answered(let isCorrect))):
-                let game = state.id.gameStamp
-                return .run { send in
-                    if isCorrect {
-                        await playSound(sound: .rightAnswer)
-                    } else {
-                        await playSound(sound: .wrongAnswer)
-                    }
-
-                    let wrongCount = await sourceOfTruth.getAllElements(of: UserChoice.self)
-                        .filter { $0.id.gameStamp == game }
-                        .filter { !$0.isCorrect }
-                        .count
-                    let isGameOver = (gameSettings.maxWrongAnswers - wrongCount == 0)
-
-                    await send(.answered(isGameOver: isGameOver))
-                }
-
-            default:
                 return .none
             }
         }

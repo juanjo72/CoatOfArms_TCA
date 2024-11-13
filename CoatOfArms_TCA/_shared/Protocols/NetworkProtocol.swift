@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import Network
+@preconcurrency import Network
 
-protocol NetworkProtocol {
+protocol NetworkProtocol: Sendable {
     func request<T: Decodable>(url: URL) async throws -> T
 }
 

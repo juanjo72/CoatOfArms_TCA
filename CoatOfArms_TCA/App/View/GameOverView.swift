@@ -8,6 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
+@ViewAction(for: GameOverFeature.self)
 struct GameOverView: View {
     let store: StoreOf<GameOverFeature>
     
@@ -25,7 +26,7 @@ struct GameOverView: View {
 
             Button(
                 action: {
-                    store.send(.userDidTapRestartButton)
+                    send(.userDidTapRestartButton)
                 },
                 label: {
                     Text("Again")
@@ -36,7 +37,7 @@ struct GameOverView: View {
             .buttonBorderShape(.capsule)
         }
         .onAppear {
-            store.send(.viewWillAppear)
+            send(.onAppear)
         }
     }
 }
