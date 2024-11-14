@@ -21,7 +21,7 @@ struct QuestionFeature {
         case view(ViewAction)
         case delegate(DelegateAction)
         case buttons(IdentifiedActionOf<ChoiceButtonFeature>)
-        case _didObserveQuestion(question: Question?)
+        case _didObserve(question: Question?)
 
         @CasePathable
         enum ViewAction {
@@ -39,6 +39,7 @@ struct QuestionFeature {
     @Dependency(\.network) var network
     @Dependency(\.randomCountryGenerator) var randomCountryGenerator
     @Dependency(\.sourceOfTruth) var sourceOfTruth
+    @Dependency(\.withRandomNumberGenerator) var withRandomNumberGenerator
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -50,7 +51,7 @@ struct QuestionFeature {
                         of: Question.self,
                         id: state.id
                     )
-                    .map(Action._didObserveQuestion)
+                    .map(Action._didObserve)
                 }
                 .merge(
                     with: .run(
@@ -59,17 +60,19 @@ struct QuestionFeature {
                             let response: ServerResponse = try await network.request(url: url)
                             let serverCountry = response.country
                             let otherChoices = self.randomCountryGenerator.generateCodes(
-                                n: self.gameSettings.numPossibleChoices - 1,
+                                n: gameSettings.numPossibleChoices - 1,
                                 excluding: [questionId.countryCode]
                             )
-                            let rightChoicePosition = (0..<self.gameSettings.numPossibleChoices).randomElement()!
+                            let rightChoicePosition = withRandomNumberGenerator { generator in
+                                Int.random(in: 0..<gameSettings.numPossibleChoices, using: &generator)
+                            }
                             let question = Question(
                                 id: questionId,
                                 coatOfArmsURL: serverCountry.coatOfArmsURL,
                                 otherChoices: otherChoices,
                                 rightChoicePosition: rightChoicePosition
                             )
-                            await self.sourceOfTruth.add(question)
+                            await sourceOfTruth.add(question)
                         },
                         catch: { error, send in
                             await send(.delegate(.emptyCoatOfArmsError))
@@ -78,9 +81,7 @@ struct QuestionFeature {
                 )
 
             case .buttons(.element(id: _, action: .delegate(.didAnswer))):
-                return .run {
-                    await $0(.delegate(.didAnswer))
-                }
+                return .send(.delegate(.didAnswer))
 
             case .buttons:
                 return .none
@@ -88,7 +89,7 @@ struct QuestionFeature {
             case .delegate:
                 return .none
 
-            case let ._didObserveQuestion(question):
+            case let ._didObserve(question):
                 guard let question else {
                     return .none
                 }
