@@ -18,7 +18,8 @@ struct CoatOfArms_TCAApp: App {
                     reducer: {
                         AppFeature()
                     }
-                )
+                ),
+                style: .default
             )
         }
     }

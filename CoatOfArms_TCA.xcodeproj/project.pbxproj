@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8153F0C32CAE4C4200B968B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8153F0C22CAE4C4200B968B0 /* Kingfisher */; };
 		8153F0DE2CAE54D000B968B0 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 8153F0DD2CAE54D000B968B0 /* Network */; };
+		816CB8962CE70B9300CEBF61 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 816CB8952CE70B9300CEBF61 /* InlineSnapshotTesting */; };
+		816CB8982CE70B9300CEBF61 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 816CB8972CE70B9300CEBF61 /* SnapshotTesting */; };
 		81BACD422CCA2EEE00453834 /* ReactiveStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 81BACD412CCA2EEE00453834 /* ReactiveStorage */; };
 		81CEEE3C2CE34E7100C16E13 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 81CEEE3B2CE34E7100C16E13 /* Kingfisher */; };
 		81CEEE3E2CE34E7400C16E13 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 81CEEE3D2CE34E7400C16E13 /* Network */; };
@@ -60,8 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				816CB8982CE70B9300CEBF61 /* SnapshotTesting in Frameworks */,
 				81CEEE3C2CE34E7100C16E13 /* Kingfisher in Frameworks */,
 				81CEEE3E2CE34E7400C16E13 /* Network in Frameworks */,
+				816CB8962CE70B9300CEBF61 /* InlineSnapshotTesting in Frameworks */,
 				81CEEE402CE34E7700C16E13 /* ReactiveStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +149,8 @@
 				81CEEE3B2CE34E7100C16E13 /* Kingfisher */,
 				81CEEE3D2CE34E7400C16E13 /* Network */,
 				81CEEE3F2CE34E7700C16E13 /* ReactiveStorage */,
+				816CB8952CE70B9300CEBF61 /* InlineSnapshotTesting */,
+				816CB8972CE70B9300CEBF61 /* SnapshotTesting */,
 			);
 			productName = CoatOfArms_TCATests;
 			productReference = 814DF02B2CAAD69C00192D55 /* CoatOfArms_TCATests.xctest */;
@@ -183,6 +189,7 @@
 				8153F0DC2CAE54D000B968B0 /* XCRemoteSwiftPackageReference "Network" */,
 				81BACD402CCA2EEE00453834 /* XCRemoteSwiftPackageReference "ReactiveStorage" */,
 				81CEEE8E2CE4CCB900C16E13 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				816CB8942CE70B9300CEBF61 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 814DF01C2CAAD69B00192D55 /* Products */;
@@ -526,6 +533,14 @@
 				kind = branch;
 			};
 		};
+		816CB8942CE70B9300CEBF61 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.6;
+			};
+		};
 		81BACD402CCA2EEE00453834 /* XCRemoteSwiftPackageReference "ReactiveStorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/juanjo72/ReactiveStorage.git";
@@ -554,6 +569,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8153F0DC2CAE54D000B968B0 /* XCRemoteSwiftPackageReference "Network" */;
 			productName = Network;
+		};
+		816CB8952CE70B9300CEBF61 /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 816CB8942CE70B9300CEBF61 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		816CB8972CE70B9300CEBF61 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 816CB8942CE70B9300CEBF61 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 		81BACD412CCA2EEE00453834 /* ReactiveStorage */ = {
 			isa = XCSwiftPackageProductDependency;

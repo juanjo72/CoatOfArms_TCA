@@ -8,6 +8,7 @@
 extension GameView.Style {
     static var `default`: Self {
         GameView.Style(
+            question: .default,
             remaininLives: .default
         )
     }

@@ -18,7 +18,7 @@ struct GameView: View {
             spacing: 30
         ) {
             if let childStore = store.scope(state: \.question, action: \.question) {
-                QuestionView(store: childStore)
+                QuestionView(store: childStore, style: style.question)
                     .id(childStore.state.id)
             }
             
@@ -36,6 +36,7 @@ struct GameView: View {
 
 extension GameView {
     struct Style {
+        let question: QuestionView.Style
         let remaininLives: LivesCountView.Style
     }
 }

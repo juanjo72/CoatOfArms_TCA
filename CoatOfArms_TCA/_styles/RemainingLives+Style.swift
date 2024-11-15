@@ -8,6 +8,7 @@
 extension LivesCountView.Style {
     static var `default`: Self {
         LivesCountView.Style(
+            height: 30,
             tint: .gray
         )
     }

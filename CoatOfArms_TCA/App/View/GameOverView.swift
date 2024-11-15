@@ -11,18 +11,19 @@ import SwiftUI
 @ViewAction(for: GameOverFeature.self)
 struct GameOverView: View {
     let store: StoreOf<GameOverFeature>
-    
+    let style: Style
+
     // MARK: View
 
     var body: some View {
         VStack(
-            spacing: 20
+            spacing: style.vSpacing
         ) {
             Text("Game Over")
-                .font(.headline)
+                .font(style.heading)
 
             Text("Score: \(store.score)")
-                .font(.subheadline)
+                .font(style.subheadline)
 
             Button(
                 action: {
@@ -42,6 +43,14 @@ struct GameOverView: View {
     }
 }
 
+extension GameOverView {
+    struct Style {
+        let heading: Font
+        let subheadline: Font
+        let vSpacing: CGFloat
+    }
+}
+
 #Preview {
     GameOverView(
         store: Store(
@@ -49,6 +58,7 @@ struct GameOverView: View {
             reducer: {
                 GameOverFeature()
             }
-        )
+        ),
+        style: .default
     )
 }

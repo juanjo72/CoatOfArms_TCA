@@ -11,7 +11,8 @@ import SwiftUI
 @ViewAction(for: ChoiceButtonFeature.self)
 struct ChoiceButtonView: View {
     let store: StoreOf<ChoiceButtonFeature>
-    
+    let style: Style
+
     var body: some View {
         Button(
             action: {
@@ -19,7 +20,7 @@ struct ChoiceButtonView: View {
             },
             label: {
                 Text(store.label)
-                    .font(.title2)
+                    .font(style.title)
                     .lineLimit(nil)
                     .frame(maxWidth: .infinity)
             }
@@ -30,6 +31,12 @@ struct ChoiceButtonView: View {
         .onAppear() {
             send(.onAppear)
         }
+    }
+}
+
+extension ChoiceButtonView {
+    struct Style {
+        let title: Font
     }
 }
 
@@ -46,7 +53,8 @@ struct ChoiceButtonView: View {
             reducer: {
                 ChoiceButtonFeature()
             }
-        )
+        ),
+        style: .default
     )
     .padding()
 }

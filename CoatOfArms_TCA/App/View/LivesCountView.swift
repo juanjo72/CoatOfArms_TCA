@@ -27,6 +27,7 @@ struct LivesCountView: View {
                 .animation(.easeOut, value: self.store.remainingLives)
             }
         }
+        .frame(minHeight: style.height)
         .accessibilityElement(children: .ignore)
         .accessibilityValue("You have \(self.store.remainingLives) lives left")
         .onAppear() {
@@ -37,6 +38,7 @@ struct LivesCountView: View {
 
 extension LivesCountView {
     struct Style {
+        let height: CGFloat
         let tint: Color
     }
 }

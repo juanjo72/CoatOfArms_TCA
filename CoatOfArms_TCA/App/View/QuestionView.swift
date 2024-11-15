@@ -17,10 +17,11 @@ enum ImageSource: Equatable {
 @ViewAction(for: QuestionFeature.self)
 struct QuestionView: View {
     let store: StoreOf<QuestionFeature>
-    
+    let style: Style
+
     var body: some View {
         VStack(
-            spacing: 20
+            spacing: style.vSpacing
         ) {
             Spacer()
             
@@ -44,7 +45,7 @@ struct QuestionView: View {
                 ForEach(
                     store.scope(state: \.buttons, action: \.buttons)
                 ) { childStore in
-                    ChoiceButtonView(store: childStore)
+                    ChoiceButtonView(store: childStore, style: style.button)
                 }
             }
             .layoutPriority(1)
@@ -52,6 +53,13 @@ struct QuestionView: View {
         .onAppear() {
             send(.onAppear)
         }
+    }
+}
+
+extension QuestionView {
+    struct Style {
+        let button: ChoiceButtonView.Style
+        let vSpacing: CGFloat
     }
 }
 
@@ -67,7 +75,8 @@ struct QuestionView: View {
             reducer: {
                 QuestionFeature()
             }
-        )
+        ),
+        style: .default
     )
     .padding()
 }
