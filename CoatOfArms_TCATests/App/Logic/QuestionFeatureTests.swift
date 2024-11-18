@@ -50,7 +50,7 @@ struct QuestionFeatureTests {
         #expect(sourceOfTruth.addCallsCount == 1)
         let expectedQuestionToStore = Question(
             id: questionId,
-            coatOfArmsURL: URL(string: "https://restcountries.com/v3.1/alpha/ES")!,
+            coatOfArms: .url(URL(string: "https://restcountries.com/v3.1/alpha/ES")!),
             otherChoices: ["FR"],
             rightChoicePosition: 0
         )
@@ -80,7 +80,7 @@ struct QuestionFeatureTests {
 
         let observedQuestion = Question(
             id: questionId,
-            coatOfArmsURL: URL(string: "https://restcountries.com/v3.1/alpha/ES")!,
+            coatOfArms: .url(URL(string: "https://restcountries.com/v3.1/alpha/ES")!),
             otherChoices: ["FR"],
             rightChoicePosition: 0
         )
@@ -149,10 +149,4 @@ struct QuestionFeatureTests {
     }
 }
 
-struct FakeRandom: RandomNumberGenerator {
-    let returnValue: UInt64
 
-    func next() -> UInt64 {
-        returnValue
-    }
-}

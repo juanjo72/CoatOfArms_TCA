@@ -13,6 +13,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:CoatOfArms_TCA.xcodeproj",
         "identifier" : "814DF02A2CAAD69C00192D55",

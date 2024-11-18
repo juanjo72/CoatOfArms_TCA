@@ -14,7 +14,7 @@ struct Question: Identifiable, Equatable {
     }
     
     let id: ID
-    let coatOfArmsURL: URL
+    let coatOfArms: ImageSource
     let otherChoices: [CountryCode]
     let rightChoicePosition: Int
 }

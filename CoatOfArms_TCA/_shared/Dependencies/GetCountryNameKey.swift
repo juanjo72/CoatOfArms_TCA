@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 private enum GetCountryNameKey: DependencyKey {
     static var liveValue: GetCountryNameProtocol {
@@ -19,7 +20,7 @@ private enum GetCountryNameKey: DependencyKey {
     }
 
     static var previewValue: any GetCountryNameProtocol {
-        GetCountryName(locale: .init(identifier: "en_US"))
+        GetCountryName(locale: Locale(identifier: "en_US"))
     }
 }
 

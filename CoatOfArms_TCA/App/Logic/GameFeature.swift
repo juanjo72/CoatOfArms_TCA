@@ -42,7 +42,6 @@ struct GameFeature {
 
     var body: some ReducerOf<Self> {
         Reduce() { state, action in
-
             switch action {
             case .view(.onAppear):
                 state.livesCount = LivesCountFeature.State(id: state.id)

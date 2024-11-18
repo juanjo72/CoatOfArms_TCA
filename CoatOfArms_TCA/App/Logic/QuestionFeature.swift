@@ -68,7 +68,7 @@ struct QuestionFeature {
                             }
                             let question = Question(
                                 id: questionId,
-                                coatOfArmsURL: serverCountry.coatOfArmsURL,
+                                coatOfArms: .url(serverCountry.coatOfArmsURL),
                                 otherChoices: otherChoices,
                                 rightChoicePosition: rightChoicePosition
                             )
@@ -99,8 +99,9 @@ struct QuestionFeature {
                         ChoiceButtonFeature.State(id: $0, questionId: state.id)
                     )
                 }
-                state.imageSource = .url(question.coatOfArmsURL)
+                state.imageSource = question.coatOfArms
                 state.buttons = buttons
+                print("[QUESTION] \(question)")
                 return .none
             }
         }
